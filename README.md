@@ -21,3 +21,5 @@
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 - Connor Boyce, Software Developer, Pair Programming [Lab 11 WRRC](src/Lab11WRRC.png)
+- Patrick Tommaso [Open Book Lot](https://unsplash.com/@impatrickt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)"
+  

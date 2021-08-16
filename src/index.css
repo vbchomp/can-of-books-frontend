@@ -1,0 +1,12 @@
+/* This is the css for the half page background image */
+/* https://mdbootstrap.com/docs/react/css/background-image/ */
+body, html {
+  height: 100%;
+}
+.bg {
+  background-image: url("https://unsplash.com/@impatrickt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText");
+  height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
