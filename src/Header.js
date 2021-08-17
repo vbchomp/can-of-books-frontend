@@ -5,11 +5,11 @@ import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { Link } from "react-router-dom";
 import './Header.css';
-import { useAuth0 } from "@auth0/auth0-react";
+import { withAuth0 } from "@auth0/auth0-react";
 
 class Header extends React.Component {
   render() {
-    const { isAuthenticated, isLoading } = useAuth0();
+    const { isAuthenticated, isLoading } = this.props.auth0;
 
     if (isLoading) {
       return <div>Loading ...</div>;
@@ -29,4 +29,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withAuth0(Header);
