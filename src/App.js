@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
-import axios from 'axios';
+// import axios from 'axios';
 // import LoginButton from './LoginButton';
 // import LogoutButton from './LogoutButton';
 import Profile from './Profile';
@@ -17,21 +17,11 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
-  makeAuthReq = async () => {
-    const { getIdTokenClaims } = this.props.auth0;
-    let claimThatToken = await getIdTokenClaims();
-    const jwt = claimThatToken.__raw;
-    const config = {
-      headers: { "Authorization": `Bearer ${jwt}` },
-    };
-
-    const serverResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/test`, config);
-
-    console.log('I hope it works this way, since it did not work the other way', serverResponse);
-  }
+  
 
   render() {
     console.log(this.props.auth0);
+    // object deconstructuring
     const { user, isLoading, isAuthenticated } = this.props.auth0;
     console.log('user', user);
     console.log('app', this.props);
@@ -42,12 +32,7 @@ class App extends React.Component {
       <>
         <Router>
           <IsLoadingAndError>
-            <Header>
-              {/* {isAuthenticated ?
-                <LogoutButton /> :
-                <LoginButton
-                />} */}
-            </Header>
+            <Header isAuthenticated={isAuthenticated} />
             <Switch>
               <Route exact path="/">
                 {/* Not Sure if Done - Is BestBooks supposed to be Bookshelf?: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}

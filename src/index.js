@@ -10,20 +10,20 @@ import './index.css';
 const BackgroundImagePage = () => {
   return (
     <div className="bg"></div>
-    );
-  }
-  
+  );
+}
+
 // DONE: wrap everything in Auth0
 ReactDOM.render(
-  <Auth0Provider
-    domain="dev-xmbqk6d0.us.auth0.com"
-    clientId="YwlXJEa6tPbTT5IHOb6kVPOHCYp7Kuq0"
-    redirectUri={window.location.origin}
-  >
-    <React.StrictMode>
+  <React.StrictMode>
+    <Auth0Provider
+      domain="dev-xmbqk6d0.us.auth0.com"
+      clientId="YwlXJEa6tPbTT5IHOb6kVPOHCYp7Kuq0"
+      redirectUri={window.location.origin}
+    >
       <App />
-    </React.StrictMode>,
-  </Auth0Provider>,
+    </Auth0Provider>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
