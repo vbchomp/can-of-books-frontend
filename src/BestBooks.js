@@ -39,7 +39,7 @@ class MyFavoriteBooks extends React.Component {
           <p>
             This is a collection of my favorite books
           </p>
-          <button onClick={this.makeRequest}>Send me to Server</button>
+          <button onClick={this.makeAuthReq}>Send me to Server</button>
           <p>Check the console!</p>
         </Jumbotron>
       </>

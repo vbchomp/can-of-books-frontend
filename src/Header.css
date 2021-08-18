@@ -1,8 +1,13 @@
-a{
+a {
   color: cadetblue;
-  padding: 5px 5px;
+  padding: 10px 10px;
+  margin-right: 10px;
 }
 
-a:hover{
+a:hover {
   color:darkgrey;
+}
+
+button {
+  padding: 5px;
 }
