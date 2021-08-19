@@ -16,3 +16,11 @@ button {
 button:hover {
   color:darkgrey;
 }
+
+.carousel {
+  margin-bottom: 50px;
+}
+
+img.d-block.w-100 {
+  size: 50%;
+}

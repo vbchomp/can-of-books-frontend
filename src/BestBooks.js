@@ -2,7 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import './BestBooks.css';
-import patricktomasso from './patricktomasso.JPEG';
+import patricktomasso from './img/patricktomasso.JPEG';
+import library from './img/library.png'; 
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel'
@@ -50,6 +51,7 @@ class MyFavoriteBooks extends React.Component {
 
   render() {
     console.log(this.state);
+    console.log(library);
 
     return (
       <>
@@ -74,9 +76,9 @@ class MyFavoriteBooks extends React.Component {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="https://www.flaticon.com/authors/smashicons"
-                title="Smashicons and Flaticons"
-                alt={this.state.books.title}
+                src={library}
+                title="library icon by Smashicons and Flaticons"
+                alt="library icon available here https://www.flaticon.com/authors/smashicons"
               />
               <Carousel.Caption>
                 <h3>{this.state.books.title}</h3>
