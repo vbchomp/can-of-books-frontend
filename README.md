@@ -31,4 +31,4 @@ React, Node JS, Mongo DB, Mongoose, GitHub, Auth0, JWKS, Trello
 
 - Connor Boyce, Software Developer, Pair Programming [Lab 11 WRRC](src/Lab11WRRC.png)
 - Patrick Tommaso [Open Book Lot](https://unsplash.com/@impatrickt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-- Joe Pannock, TA, helped me fix my onClick server button
+- Joe Pennock, TA, helped me fix my onClick server button, helped me get my database to connect with Auth0 to get email from user and jwt token.
