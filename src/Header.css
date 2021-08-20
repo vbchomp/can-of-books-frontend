@@ -8,6 +8,10 @@ a:hover {
   color:darkgrey;
 }
 
+span.navbar-brand {
+  color: cornsilk;
+}
+
 button {
   padding: 5px;
 }

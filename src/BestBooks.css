@@ -1,7 +1,11 @@
 .jumbotron{
   margin-bottom: 0;
-  background-color: cornsilk;
+  background-color: #36454f;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+  color: cornsilk;
 }
 
 p {
@@ -10,7 +14,8 @@ p {
 
 button {
   font-size: 1.25em;
-  color: cadetblue;
+  color: cornsilk;
+  background-color: cadetblue;
 }
 
 button:hover {
@@ -19,8 +24,15 @@ button:hover {
 
 .carousel {
   margin-bottom: 50px;
+  width: 600px;
+  height: 600px;
+  margin: auto;
 }
 
-img.d-block.w-100 {
-  size: 50%;
+.carousel h3, p {
+  color: cornsilk;
 }
+
+/* img.d-block.w-100 {
+  size: 50%;
+} */
