@@ -3,10 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import './BestBooks.css';
 import patricktomasso from './img/patricktomasso.JPEG';
-import library from './img/library.png'; 
+import library from './img/library.png';
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class MyFavoriteBooks extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class MyFavoriteBooks extends React.Component {
     const config = {
       headers: { "Authorization": `Bearer ${jwt}` },
       // params sending the email from auth0 to the database request on server side
+      // don't need this for this lab. old code form old lessonplans
       params: { email: this.props.auth0.user.email },
     };
     const results = await axios.get('http://localhost:3001/books', config);
@@ -71,20 +73,20 @@ class MyFavoriteBooks extends React.Component {
           <p>
             This is a collection of my favorite books
           </p>
-          {this.state.books ? 
-          <Carousel>
-            <Carousel.Item>
+          {this.state.books.length > 0 ? <Carousel> {this.state.books.map(book => (
+            <Carousel.Item key={book._id}>
               <img
                 className="d-block w-100"
                 src={library}
                 title="library icon by Smashicons and Flaticons"
                 alt="library icon available here https://www.flaticon.com/authors/smashicons"
-              />
+                />
               <Carousel.Caption>
-                <h3>{this.state.books.title}</h3>
-                <p>{this.state.books.description}</p>
+                <h3>{book.title}</h3>
+                <p>{book.description}</p>
               </Carousel.Caption>
             </Carousel.Item>
+          ))}
           </Carousel> : ''}
           <button onClick={this.makeAuthReq}>Send me to Server</button>
           <p>Check the console!</p>
