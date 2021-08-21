@@ -7,7 +7,6 @@ import library from './img/library.png';
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel'
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class MyFavoriteBooks extends React.Component {
   constructor(props) {
@@ -23,12 +22,14 @@ class MyFavoriteBooks extends React.Component {
     let claimThatToken = await getIdTokenClaims();
     const jwt = claimThatToken.__raw;
     console.log(jwt);// could console.log the claimThatToken if want to see the long token
+    let email = this.props.auth0.user.email
     const config = {
       headers: { "Authorization": `Bearer ${jwt}` },
       // params sending the email from auth0 to the database request on server side
       // don't need this for this lab. old code form old lessonplans
       params: { email: this.props.auth0.user.email },
     };
+    console.log('email:', email);
     const results = await axios.get('http://localhost:3001/books', config);
     console.log(results.data);
     this.setState({
@@ -88,7 +89,7 @@ class MyFavoriteBooks extends React.Component {
             </Carousel.Item>
           ))}
           </Carousel> : ''}
-          <button onClick={this.makeAuthReq}>Send me to Server</button>
+          <button onClick={this.makeAuthReq}>Take me to your Server</button>
           <p>Check the console!</p>
         </Jumbotron>
       </>

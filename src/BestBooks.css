@@ -16,6 +16,8 @@ button {
   font-size: 1.25em;
   color: cornsilk;
   background-color: cadetblue;
+  /* margin-top: 25px; */
+  border-radius: 5px;
 }
 
 button:hover {
@@ -27,6 +29,7 @@ button:hover {
   width: 600px;
   height: 600px;
   margin: auto;
+  margin-bottom: 25px;
 }
 
 .carousel h3, p {
