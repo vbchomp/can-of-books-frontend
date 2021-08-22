@@ -32,3 +32,5 @@ React, Node JS, Mongo DB, Mongoose, GitHub, Auth0, JWKS, Trello
 - Connor Boyce, Software Developer, Pair Programming [Lab 11 WRRC](src/img/Lab11WRRC.png)
 - Patrick Tommaso [Open Book Lot](https://unsplash.com/@impatrickt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 - Joe Pennock, TA, helped me fix my onClick server button, helped me get my database to connect with Auth0 to get email from user and jwt token.
+- Ryan Gallaway, Instructor, helped me fix amy carousel issues and forced me to change my css to to allow the image and font to coexist. 
+- Connor Boyce, Software Developer, Pair Programming [Lab 12 WRRC](src/img/Lab12WRRC.png)
