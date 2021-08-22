@@ -54,7 +54,6 @@ class MyFavoriteBooks extends React.Component {
 
   render() {
     console.log(this.state);
-    console.log(library);
 
     return (
       <>

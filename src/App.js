@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Profile from './Profile';
 import BestBooks from './BestBooks';
 import { withAuth0 } from '@auth0/auth0-react';
+import Login from './Login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,7 +20,7 @@ class App extends React.Component {
   render() {
     console.log(this.props.auth0);
     // object deconstructuring
-    const { user, isLoading, isAuthenticated } = this.props.auth0;
+    const { user, isLoading } = this.props.auth0;
     console.log('user', user);
     console.log('app', this.props);
     if (isLoading) {
@@ -29,16 +30,14 @@ class App extends React.Component {
       <>
         <Router>
           <IsLoadingAndError>
-            <Header isAuthenticated={isAuthenticated} />
+            <Header />
             <Switch>
               <Route exact path="/">
                 {/* Not Sure if Done - Is BestBooks supposed to be Bookshelf?: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
-                {user ? <BestBooks /> : ''}
+                {user ? <BestBooks /> : <Login />}
               </Route>
-              <Route exact path="/Profile">
+              <Route exact path="/Profile" component={Profile} />
                 {/* DONE: add a route with a path of '/profile' that renders a `Profile` component */}
-                {user ? <Profile /> : ''}
-              </Route>
             </Switch>
             <Footer />
           </IsLoadingAndError>
