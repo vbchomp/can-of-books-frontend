@@ -7,12 +7,15 @@ import library from './img/library.png';
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel'
+import BookFormModal from './BookFormModal';
 
 class MyFavoriteBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       books: [],
+      isOpen: true,
+      setShow: true,
     }
   }
 
@@ -33,7 +36,9 @@ class MyFavoriteBooks extends React.Component {
     const results = await axios.get('http://localhost:3001/books', config);
     console.log(results.data);
     this.setState({
-      books: results.data
+      books: results.data,
+      setShow: false,
+      isOpen: false,
     })
   }
 
@@ -50,6 +55,20 @@ class MyFavoriteBooks extends React.Component {
     };
     const serverResponse = await axios.get('http://localhost:3001/test', config);
     console.log('I hope it works this way, since it did not work the other way', serverResponse);
+  }
+
+  // This closes the Book Modal
+  closeModal = () => {
+    this.setState({
+      isOpen: false,
+    });
+  }
+
+  // This opens the Book Modal
+  openModal = () => {
+    this.setState({
+      isOpen: true,
+    });
   }
 
   render() {
@@ -84,12 +103,16 @@ class MyFavoriteBooks extends React.Component {
               <Carousel.Caption>
                 <h3>{book.title}</h3>
                 <p>{book.description}</p>
+                <p>{book.status}</p>
               </Carousel.Caption>
             </Carousel.Item>
           ))}
           </Carousel> : ''}
-          <button onClick={this.makeAuthReq}>Take me to your Server</button>
-          <p>Check the console!</p>
+          {/* <button onClick={this.openModal}>Want to Add a New Book?</button> */}
+          <BookFormModal />
+          {/* {this.state.isOpen} ? <BookFormModal /> : ''; */}
+          {/* <button onClick={this.makeAuthReq}>Take me to your Server</button>
+          <p>Check the console!</p> */}
         </Jumbotron>
       </>
     )
