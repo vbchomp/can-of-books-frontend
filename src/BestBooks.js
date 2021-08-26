@@ -3,12 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import './BestBooks.css';
 import patricktomasso from './img/patricktomasso.JPEG';
-import library from './img/library.png';
+// import library from './img/library.png';
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
 import BookFormModal from './BookFormModal';
+import BookUpdateFormModal from './BookUpdateFormModal';
 
 class MyFavoriteBooks extends React.Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class MyFavoriteBooks extends React.Component {
       console.log(response.data);
       this.setState({
         books: [...this.state.books, response.data],
-      }) 
+      })
     }
     catch (err) {
       console.log(err);
@@ -73,14 +74,30 @@ class MyFavoriteBooks extends React.Component {
 
   handleDelete = async (id) => {
     try {
-      let response = await axios.post(`http://localhost:3001/books/${id}`);
+      let response = await axios.delete(`http://localhost:3001/books/${id}`);
       console.log('i am here');
       console.log('response:', response.data);
-      let remainingBooks = this.state.books.filter(book => book.id !== id);
+      let remainingBooks = this.state.books.filter(book => book._id !== id);
       console.log('remainingbooks:', remainingBooks);
       this.setState({
-        books: [remainingBooks],
-      }) 
+        books: remainingBooks,
+      })
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+  handleUpdate = async (id) => {
+    try {
+      let response = await axios.update(`http://localhost:3001/books/${id}`);
+      console.log('i am here');
+      console.log('response:', response.data);
+      // let updatingBooks = this.state.books.filter(book => book._id === id);
+      // console.log('updatingbooks:', updatingBooks);
+      this.setState({
+        books: [...this.state.books, response.data],
+      })
     }
     catch (err) {
       console.log(err);
@@ -134,18 +151,25 @@ class MyFavoriteBooks extends React.Component {
                 alt="Open Book Lot by Patrick Tomasso"
                 title="Open Book Lot by Patrick Tomasso"
                 description="Open Book Lot by Patrick Tomasso"
-                />
+              />
               <Carousel.Caption>
                 <h3>{book.title}</h3>
                 <p>{book.description}</p>
                 <p>{book.status}</p>
               </Carousel.Caption>
-              <Button variant="outline-danger" onClick={() => this.handleDelete(book._id)}>Don't Touch</Button>
+              <Button 
+                variant="outline-danger"
+                className="randomDeleteButton" 
+                onClick={() => this.handleDelete(book._id)}>Don't Touch
+              </Button>
             </Carousel.Item>
           ))}
           </Carousel> : ''}
           <button onClick={this.openModal}>Want to Add a New Book?</button>
-          <BookFormModal isOpen={this.state.isOpen} closeModal={this.closeModal} handleCreate={this.handleCreate} handleDelete={this.handleDelete}
+          <button onClick={this.openModal}>Make Changes to a Book?</button>
+          <BookFormModal isOpen={this.state.isOpen} closeModal={this.closeModal} handleCreate={this.handleCreate} 
+          />
+          <BookUpdateFormModal isOpen={this.state.isOpen} closeModal={this.closeModal} handleUpdate={this.handleUpdate}
           />
           {/* {this.state.isOpen} ? <BookFormModal /> : ''; */}
           {/* <button onClick={this.makeAuthReq}>Take me to your Server</button>
