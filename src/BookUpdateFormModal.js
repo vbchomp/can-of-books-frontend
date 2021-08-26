@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 
-class BookFormModal extends React.Component {
+class BookUpdateFormModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,7 @@ class BookFormModal extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleCreate(this.state);
+    this.props.handleUpdate(this.state);
     this.props.closeModal();
 
   }
@@ -34,7 +34,7 @@ class BookFormModal extends React.Component {
           onHide={this.props.closeModal}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Add a Book to or Make Changes to a Book in My Favorite Books List</Modal.Title>
+            <Modal.Title>Make Changes to a Book in My Favorite Books List</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
@@ -54,7 +54,7 @@ class BookFormModal extends React.Component {
                 <Form.Control type="text" placeholder="Status" onChange={(e)=>this.setState({status: e.target.value})}/>
               </Form.Group>
               <Button variant="primary" type="submit">
-                Submit that Book
+                Submit changes to that Book
               </Button>
             </Form>
           </Modal.Body>
@@ -64,4 +64,4 @@ class BookFormModal extends React.Component {
   }
 }
 
-export default withAuth0(BookFormModal);
+export default withAuth0(BookUpdateFormModal);
