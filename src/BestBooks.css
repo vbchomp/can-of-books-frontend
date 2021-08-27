@@ -14,7 +14,7 @@ h1 {
 }
 
 button {
-  margin-left: 70px;
+  margin-left: 100px;
   font-size: 1.25em;
   color: cornsilk;
   background-color: cadetblue;
@@ -52,6 +52,9 @@ div.carousel.slide {
 } */
 
 .randomDeleteButton {
-  text-align: center;
-  margin-left: 220px;
+  /* margin-top: 50px; */
+}
+
+.randomUpdateButton {
+  /* margin-top: 50px; */
 }
