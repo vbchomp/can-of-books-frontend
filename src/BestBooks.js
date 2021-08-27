@@ -16,7 +16,9 @@ class MyFavoriteBooks extends React.Component {
     super(props);
     this.state = {
       books: [],
-      isOpen: true,
+      isOpen: false,
+      isUpdateOpen: false,
+      selectedBook: null,
     }
   }
 
@@ -38,7 +40,6 @@ class MyFavoriteBooks extends React.Component {
     console.log(results.data);
     this.setState({
       books: results.data,
-      isOpen: false,
     })
   }
 
@@ -88,15 +89,21 @@ class MyFavoriteBooks extends React.Component {
     }
   }
 
-  handleUpdate = async (id) => {
+  handleUpdate = async (book) => {
     try {
-      let response = await axios.update(`http://localhost:3001/books/${id}`);
+      let response = await axios.put(`http://localhost:3001/books/${book._id}`, book);
       console.log('i am here');
       console.log('response:', response.data);
-      // let updatingBooks = this.state.books.filter(book => book._id === id);
-      // console.log('updatingbooks:', updatingBooks);
+      let updatingBooks = this.state.books.map(stateBook => {
+        if (stateBook._id === book._id) {
+          return book;
+        } else {
+          return stateBook;
+        }
+      });
+      console.log('updatingbooks:', updatingBooks);
       this.setState({
-        books: [...this.state.books, response.data],
+        books: updatingBooks,
       })
     }
     catch (err) {
@@ -115,6 +122,21 @@ class MyFavoriteBooks extends React.Component {
   openModal = () => {
     this.setState({
       isOpen: true,
+    });
+  }
+
+  // This closes the Book Update Modal
+  closeUpdateModal = () => {
+    this.setState({
+      isUpdateOpen: false,
+    });
+  }
+
+  // This opens the Book Update Modal
+  openUpdateModal = (book) => {
+    this.setState({
+      isUpdateOpen: true,
+      selectedBook: book,
     });
   }
 
@@ -157,20 +179,24 @@ class MyFavoriteBooks extends React.Component {
                 <p>{book.description}</p>
                 <p>{book.status}</p>
               </Carousel.Caption>
-              <Button 
+              <Button
                 variant="outline-danger"
-                className="randomDeleteButton" 
+                className="randomDeleteButton"
                 onClick={() => this.handleDelete(book._id)}>Don't Touch
               </Button>
+              <Button
+                variant="outline-danger"
+                className="randomUpdateButton"
+                onClick={() => this.openUpdateModal(book)}>Make Changes to a Book?</Button>
             </Carousel.Item>
           ))}
           </Carousel> : ''}
           <button onClick={this.openModal}>Want to Add a New Book?</button>
-          <button onClick={this.openModal}>Make Changes to a Book?</button>
-          <BookFormModal isOpen={this.state.isOpen} closeModal={this.closeModal} handleCreate={this.handleCreate} 
+          {/* <button onClick={this.openModal}>Make Changes to a Book?</button> */}
+          <BookFormModal isOpen={this.state.isOpen} closeModal={this.closeModal} handleCreate={this.handleCreate}
           />
-          <BookUpdateFormModal isOpen={this.state.isOpen} closeModal={this.closeModal} handleUpdate={this.handleUpdate}
-          />
+          {this.state.isUpdateOpen ? <BookUpdateFormModal isUpdateOpen={this.state.isUpdateOpen} closeUpdateModal={this.closeUpdateModal} handleUpdate={this.handleUpdate} selectedBook={this.state.selectedBook}
+          /> : ''}
           {/* {this.state.isOpen} ? <BookFormModal /> : ''; */}
           {/* <button onClick={this.makeAuthReq}>Take me to your Server</button>
           <p>Check the console!</p> */}

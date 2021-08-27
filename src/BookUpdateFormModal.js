@@ -9,29 +9,31 @@ class BookUpdateFormModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      description: '',
-      status: '',
+      title: this.props.selectedBook.title,
+      description: this.props.selectedBook.description,
+      status: this.props.selectedBook.status,
       email: this.props.auth0.user.email,
+      _id: this.props.selectedBook._id,
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.handleUpdate(this.state);
-    this.props.closeModal();
+    this.props.closeUpdateModal();
 
   }
 
-  render() {
-    console.log('formModal:', this.state);
+  render() { 
+    console.log('selectedbook:', this.props.selectedBook);
+    console.log('formUpdateModal:', this.state);
     return (
 
       <>
         {/* Used from React bootstrap site https://react-bootstrap-v4.netlify.app/components */}
         <Modal
-          show={this.props.isOpen}
-          onHide={this.props.closeModal}
+          show={this.props.isUpdateOpen}
+          onHide={this.props.closeUpdateModal}
         >
           <Modal.Header closeButton>
             <Modal.Title>Make Changes to a Book in My Favorite Books List</Modal.Title>
@@ -40,18 +42,18 @@ class BookUpdateFormModal extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicTitle">
                 <Form.Label>Book Title</Form.Label>
-                <Form.Control type="text" placeholder="Enter book title" onChange={(e)=>this.setState({title: e.target.value})}/>
+                <Form.Control type="text" value={this.state.title} onChange={(e)=>this.setState({title: e.target.value})}/>
                 <Form.Text className="text-muted">
                   Title of book
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formBasicDesc">
                 <Form.Label>Description</Form.Label>
-                <Form.Control type="text" placeholder="Description" onChange={(e)=>this.setState({description: e.target.value})}/>
+                <Form.Control type="text" value={this.state.description} onChange={(e)=>this.setState({description: e.target.value})}/>
               </Form.Group>
               <Form.Group controlId="formBasicStatus">
                 <Form.Label>Status</Form.Label>
-                <Form.Control type="text" placeholder="Status" onChange={(e)=>this.setState({status: e.target.value})}/>
+                <Form.Control type="text" value={this.state.status} onChange={(e)=>this.setState({status: e.target.value})}/>
               </Form.Group>
               <Button variant="primary" type="submit">
                 Submit changes to that Book
